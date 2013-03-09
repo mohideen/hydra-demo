@@ -3,5 +3,6 @@ class Book < ActiveFedora::Base
 
   delegate :title, to: 'descMetadata'
   delegate :author, to: 'descMetadata'
-
+  
+  has_many :pages, :property=> :is_part_of
 end
