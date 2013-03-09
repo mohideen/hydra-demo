@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
+gem 'blacklight'
+gem 'hydra-head', '6.0.0.pre8'
+gem 'jettywrapper'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -36,3 +39,8 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+gem "unicode", :platforms => [:mri_18, :mri_19]
+gem "devise"
+gem "devise-guests", "~> 0.3"
+gem "bootstrap-sass"
