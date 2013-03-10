@@ -48,6 +48,10 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
+    config.add_facet_field solr_name('title', :stored_searchable, type: :string), :label => 'Title:' 
+    config.add_facet_field solr_name('author', :facetable), :label => 'Author' 
+#    config.add_facet_field solr_name('journer_title_info_mail_title_facet', :facetable), :label => 'Format' 
+#    config.add_facet_field solr_name('conference_facet', :facetable), :label => 'Format' 
     config.add_facet_field solr_name('object_type', :facetable), :label => 'Format' 
     config.add_facet_field solr_name('pub_date', :facetable), :label => 'Publication Year' 
     config.add_facet_field solr_name('subject_topic', :facetable), :label => 'Topic', :limit => 20 
@@ -78,12 +82,15 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display 
+    config.add_show_field solr_name('pid', :stored_searchable, type: :string), :label => 'PID:' 
     config.add_show_field solr_name('title', :stored_searchable, type: :string), :label => 'Title:' 
     config.add_show_field solr_name('title_vern', :stored_searchable, type: :string), :label => 'Title:' 
     config.add_show_field solr_name('subtitle', :stored_searchable, type: :string), :label => 'Subtitle:' 
     config.add_show_field solr_name('subtitle_vern', :stored_searchable, type: :string), :label => 'Subtitle:' 
+    config.add_show_field solr_name('subject', :stored_searchable), :label => 'Subject:' 
     config.add_show_field solr_name('author', :stored_searchable, type: :string), :label => 'Author:' 
     config.add_show_field solr_name('author_vern', :stored_searchable, type: :string), :label => 'Author:' 
+    config.add_show_field solr_name('type', :stored_searchable), :label => 'Type:' 
     config.add_show_field solr_name('format', :symbol), :label => 'Format:' 
     config.add_show_field solr_name('url_fulltext_tsim', :stored_searchable, type: :string), :label => 'URL:'
     config.add_show_field solr_name('url_suppl_tsim', :stored_searchable, type: :string), :label => 'More Information:'
@@ -118,19 +125,20 @@ class CatalogController < ApplicationController
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields. 
     
-    config.add_search_field('title') do |field|
-      # solr_parameters hash are sent to Solr as ordinary url query params. 
-      field.solr_parameters = { :'spellcheck.dictionary' => 'title' }
-
+    config.add_search_field 'title', :label => 'Title'
+#    config.add_search_field('title') do |field|
+#      # solr_parameters hash are sent to Solr as ordinary url query params. 
+#      field.solr_parameters = { :'spellcheck.dictionary' => 'title' }
+#
       # :solr_local_parameters will be sent using Solr LocalParams
       # syntax, as eg {! qf=$title_qf }. This is neccesary to use
       # Solr parameter de-referencing like $title_qf.
       # See: http://wiki.apache.org/solr/LocalParams
-      field.solr_local_parameters = { 
-        :qf => '$title_qf',
-        :pf => '$title_pf'
-      }
-    end
+#      field.solr_local_parameters = { 
+#        :qf => '$title_qf',
+#        :pf => '$title_pf'
+#      }
+#    end
     
     config.add_search_field('author') do |field|
       field.solr_parameters = { :'spellcheck.dictionary' => 'author' }
