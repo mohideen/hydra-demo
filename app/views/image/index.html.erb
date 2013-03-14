@@ -1,0 +1,20 @@
+<%#app/views/image/index.html.erb %>
+<% @images.each do |image| %>
+<dl>
+  <dt>Title</dt>
+  <dd>
+    <%= image.title[0] %>
+  </dd>
+  <dt>Subject</dt>
+  <dd>
+    <%= image.subject[0] %>
+  </dd>
+  <dt>Format</dt>
+  <dd>
+    <%= image.format[0] %>
+  <dt>Type</dt>
+  <dd>
+    <%= image.type[0] %>
+  </dd>
+</dl>
+<% end %>

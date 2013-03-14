@@ -1,0 +1,9 @@
+<%# app/views/image/edit.html.erb%>
+<%= form_for @image, :url => { :action => "create" } do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :subject %>
+  <%= f.text_field :subject %>
+  <%= f.submit "Save" %>
+<% end %>
+

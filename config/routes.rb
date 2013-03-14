@@ -5,6 +5,12 @@ HydraCode4lib::Application.routes.draw do
   HydraHead.add_routes(self)
 
   devise_for :users
+  
+  resources :image
+  resources :address 
+  resources :imagerender do
+    get 'showimage'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

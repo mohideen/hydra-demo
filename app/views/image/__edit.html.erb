@@ -1,0 +1,12 @@
+<%# app/views/image/edit.html.erb%>
+<%= form_tag({:controller => "image", :action => "update"},  :method => "put") do  %>
+  <%= hidden_field_tag "pid",@pid %>
+
+  <%= label_tag @title, "title"  %>
+  <%= text_field_tag "title", @title %>
+ 
+  <%= label_tag @subject, "subject" %>
+  <%= text_field_tag "subject", @subject %>
+  <%= submit_tag "Save" %>
+<% end %>
+
