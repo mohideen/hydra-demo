@@ -1,3 +1,3 @@
 Hydra @UMD
 
-A simple ruby web app for experimenting with hydra.
+A simple rails app for experimenting with hydra.

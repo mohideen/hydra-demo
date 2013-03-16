@@ -1,9 +1,14 @@
 <%# app/views/image/edit.html.erb%>
-<%= form_for @image, :url => { :action => "create" } do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :subject %>
-  <%= f.text_field :subject %>
-  <%= f.submit "Save" %>
+<%= form_tag({:controller => "image", :action => "create"},  :method => "post", :multipart => true) do  %>
+
+  <%= label_tag @title, "title"  %>
+  <%= text_field_tag "title", @title %>
+ 
+  <%= label_tag @subject, "subject" %>
+  <%= text_field_tag "subject", @subject %>
+
+  <%= file_field_tag 'file' %>
+
+  <%= submit_tag "Save" %>
 <% end %>
 

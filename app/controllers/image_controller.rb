@@ -10,7 +10,7 @@ class ImageController < ApplicationController
   end
   
   def new
-    @image = Image.new
+    #@image = Image.new
   end
   
   def edit
@@ -21,9 +21,13 @@ class ImageController < ApplicationController
   end
 
   def create
-    @image = Image.new(params[:image])
-    uploaded_io = params[:image][:file]
-    @image.datastreams["imageContent"].content = File.new(uploaded_io.read);
+    @image = Image.new
+    @image.title = params[:title]
+    @image.subject = params[:subject]
+    uploaded_io = params[:file]
+    path = "tmp/files/tmpfile"
+    File.open(path, "wb") { |f| f.write(uploaded_io.read) }
+    @image.datastreams["imageContent"].content = File.new(path)
     @image.save
     render :show
   end
