@@ -11,3 +11,22 @@
  *= require_self
  *= require_tree .
  */
+
+/*
+ OVERRIDE
+ The main logo image for the Blacklight instance
+*/
+/* line 6, ../../../../../home/admin/.rvm/gems/ruby-1.9.3-p392/gems/blacklight-4.1.0/app/assets/stylesheets/blacklight/_header.css.scss */
+.navbar .brand {
+  width: 225px !important;
+  background: transparent url(/assets/umdlogo.png) no-repeat top left;
+  display: inline-block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-right: 0;
+  margin-right: 20px;
+  padding-left: 0;
+}
+
+
