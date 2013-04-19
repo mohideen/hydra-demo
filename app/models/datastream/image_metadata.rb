@@ -2,8 +2,8 @@ class Datastream::ImageMetadata < ActiveFedora::OmDatastream
 
   set_terminology do |t|
     t.root(path: "fields")
-    t.title(index_as: :stored_searchable)
-    t.description(index_as: :stored_searchable)
+    t.title(index_as: [:text, :stored, :indexed])
+    t.description(index_as: [:text, :stored, :indexed])
     t.subject(index_as: :stored_searchable)
     t.format(index_as: :stored_searchable)
     t.type(index_as: :stored_searchable)

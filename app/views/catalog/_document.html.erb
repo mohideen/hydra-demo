@@ -1,0 +1,7 @@
+    <% # container for a single doc -%>
+    <div class="span3 results-grid-item" > 
+      <% # main container for doc partial view -%>
+      <%= render_document_partial document, :index %>
+
+      <%= render :partial => 'document_header', :locals => { :document => document, :document_counter => document_counter } %>
+    </div>

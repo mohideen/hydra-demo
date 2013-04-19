@@ -10,6 +10,7 @@ HydraCode4lib::Application.routes.draw do
   resources :address 
   resources :imagerender do
     get 'showimage'
+    get 'showtn'
   end
 
   # The priority is based upon order of creation:

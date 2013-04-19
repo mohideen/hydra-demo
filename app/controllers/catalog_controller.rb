@@ -47,7 +47,9 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
-    config.add_facet_field solr_name('title', :stored_searchable, type: :string), :label => 'Title:' 
+    config.add_facet_field solr_name('title', :stored_searchable, type: :text), :label => 'Title:' 
+    config.add_facet_field solr_name('description', :stored_searchable, type: :text), :label => 'Description:' 
+    config.add_facet_field solr_name('subject', :stored_searchable, type: :string), :label => 'Subject:' 
     config.add_facet_field solr_name('author', :facetable), :label => 'Author' 
 #    config.add_facet_field solr_name('journer_title_info_mail_title_facet', :facetable), :label => 'Format' 
 #    config.add_facet_field solr_name('conference_facet', :facetable), :label => 'Format' 
@@ -69,8 +71,8 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display 
-    config.add_index_field solr_name('title', :stored_searchable, type: :string), :label => 'Title:' 
-    config.add_index_field solr_name('title_vern', :stored_searchable, type: :string), :label => 'Title:' 
+    config.add_index_field solr_name('title', :stored_searchable, type: :text), :label => 'Title:' 
+    config.add_index_field solr_name('title_vern', :stored_searchable, type: :text), :label => 'Title:' 
     config.add_index_field solr_name('author', :stored_searchable, type: :string), :label => 'Author:' 
     config.add_index_field solr_name('author_vern', :stored_searchable, type: :string), :label => 'Author:' 
     config.add_index_field solr_name('format', :symbol), :label => 'Format:' 
@@ -82,7 +84,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display 
     config.add_show_field solr_name('pid', :stored_searchable, type: :string), :label => 'PID:' 
-    config.add_show_field solr_name('title', :stored_searchable, type: :string), :label => 'Title:' 
+    config.add_show_field solr_name('title', :stored_searchable, type: :text), :label => 'Title:' 
     config.add_show_field solr_name('title_vern', :stored_searchable, type: :string), :label => 'Title:' 
     config.add_show_field solr_name('subtitle', :stored_searchable, type: :string), :label => 'Subtitle:' 
     config.add_show_field solr_name('subtitle_vern', :stored_searchable, type: :string), :label => 'Subtitle:' 
@@ -125,6 +127,7 @@ class CatalogController < ApplicationController
     # of Solr search fields. 
     
     config.add_search_field 'title', :label => 'Title'
+    config.add_search_field 'description', :label => 'Description'
 #    config.add_search_field('title') do |field|
 #      # solr_parameters hash are sent to Solr as ordinary url query params. 
 #      field.solr_parameters = { :'spellcheck.dictionary' => 'title' }

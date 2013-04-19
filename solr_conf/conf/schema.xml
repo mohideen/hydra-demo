@@ -321,7 +321,7 @@
 -->  
 
   <types>
-    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" /> 
     <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>    
     <fieldType name="rand" class="solr.RandomSortField" omitNorms="true"/>
     
@@ -372,7 +372,7 @@
       <analyzer>
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
-        <filter class="solr.TrimFilterFactory"/>
+        <filter class="solr.TrimFilterFactory"   words="/apps/git/hydra-demo/jetty/solr/development-core/conf/stopwords_en.txt" enablePositionIncrements="true" />
       </analyzer>
     </fieldType>
     
@@ -380,7 +380,7 @@
     <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-        <filter class="solr.TrimFilterFactory"/>
+        <filter class="solr.TrimFilterFactory" />
       </analyzer>
     </fieldType>
         

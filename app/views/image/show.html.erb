@@ -1,9 +1,29 @@
 <%#app/views/image/show.html.erb %>
-<h1><%= @image.title[0] %></h1>
+<script type="text/javascript">
+var img = '<%= image_tag("/imagerender/#{@image.id}/showimage", :alt => "Image") %>';
+
+  $("#img_tn").popover({ title: 'Full View', content: img });
+  var img1 = '<img src="https://si0.twimg.com/a/1339639284/images/three_circles/twitter-bird-white-on-blue.png" />';
+  $("a[rel='popover']").popover();
+  $("#blob").popover({ title: 'Look!  A bird image!', content: img1 });
+  
+  $(function () {
+       $.panzoom();
+  });
+</script>
+<h3><%= @image.title[0] %></h3>
 <dl>
   <dt>Title</dt>
   <dd>
     <%= @image.title[0] %>
+  </dd>
+  <dt>Description</dt>
+  <dd>
+    <%= @image.description[0] %>
+  </dd>
+  <dt>PID</dt>
+  <dd>
+    <%= @image.pid %>
   </dd>
   <dt>Subject</dt>
   <dd>
@@ -18,6 +38,11 @@
   </dd>
   <dt>Image</dt>
   <dd>
-    <%= image_tag("/imagerender/#{@image.id}/showimage", :alt => "Image") %>
+    <%= image_tag("/imagerender/#{@image.id}/showtn", :id=> "img_tni1", :rel => "popover", :alt => "Thumbnail") %>
   </dd>
 </dl>
+<a href="#" id="btn_imgToggler" class="btn large primary" onclick="$('#div_limg_container').toggle();">Show/Hide Full Image<a>
+<a href="javascript:window.history.back();" id="btn_back" class="btn large primary" >Back to results<a>
+<div id="div_limg_container" class="limage-container" >
+   <%= image_tag("/imagerender/#{@image.id}/showimage", :alt => "Image") %>
+</div>

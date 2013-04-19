@@ -16,3 +16,8 @@
 // Required by Blacklight
 //= require blacklight/blacklight
 //= require_tree .
+// 
+// Custom Addition
+//= require jquery.panzoom
+//= require bootstrap-tooltip.js
+//= require bootstrap-popover.js

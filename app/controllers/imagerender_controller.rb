@@ -8,5 +8,12 @@ class ImagerenderController < ApplicationController
     send_data @imageData, :type => @imageType, :filename => 'ifile', :disposition => "inline"
   end
 
+  def showtn
+    @imageObj = Image.find(params["imagerender_id"])
+
+    @imageData = @imageObj.datastreams["tnContent"].content
+    @imageType = @imageObj.datastreams["tnContent"].mimeType
+    send_data @imageData, :type => @imageType, :filename => 'itn', :disposition => "inline"
+  end
 
 end

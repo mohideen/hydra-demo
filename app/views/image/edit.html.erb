@@ -2,11 +2,16 @@
 <%= form_tag({:controller => "image", :action => "update"},  :method => "put") do  %>
   <%= hidden_field_tag "pid",@pid %>
 
-  <%= label_tag @title, "title"  %>
+  <%= label_tag @title, "Title"  %>
   <%= text_field_tag "title", @title %>
- 
-  <%= label_tag @subject, "subject" %>
+
+  <%= label_tag @description, "Description" %>
+  <%= text_field_tag "description", @description %>
+
+  <%= label_tag @subject, "Subject" %>
   <%= text_field_tag "subject", @subject %>
+
+  <br/>
   <%= submit_tag "Save" %>
 <% end %>
 

@@ -14,5 +14,8 @@ module BlacklightHelper
     link_to label, url
     
   end
-
+  
+  def render_document_tn(doc)
+    image_tag "/imagerender/"+doc.id+"/showtn", :style=> "height:110px !important", :alt => "tn"
+  end
 end
