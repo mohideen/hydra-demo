@@ -6,12 +6,13 @@
   <%= text_field_tag "title", @title %>
 
   <%= label_tag @description, "Description" %>
-  <%= text_field_tag "description", @description %>
+  <%= text_area_tag "description", @description, :style => "height:125px;" %>
 
   <%= label_tag @subject, "Subject" %>
   <%= text_field_tag "subject", @subject %>
 
   <br/>
-  <%= submit_tag "Save" %>
+  <%= submit_tag "Save", :class => "btn large primary" %>
+  <a id="btn_cancel" class="btn large primary" href="javascript:window.history.back()">Cancel</a>
 <% end %>
 

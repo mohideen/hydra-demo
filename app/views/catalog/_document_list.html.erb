@@ -6,4 +6,11 @@
     </div>
   </div>
 </div>
-
+<script type="text/javascript">
+  $(document).ready(function() {
+     if(window.location.search == "?utf8=%E2%9C%93&search_field=all_fields&q=") {
+       $(".blacklight-title_tesim").children('h5').addClass('twiddle-open');
+       $(".blacklight-title_tesim").children('ul').toggle();
+     }
+  });
+ </script>

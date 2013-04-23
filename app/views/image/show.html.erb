@@ -11,6 +11,8 @@ var img = '<%= image_tag("/imagerender/#{@image.id}/showimage", :alt => "Image")
        $.panzoom();
   });
 </script>
+<a href="/" id="btn_back" class="btn large primary" >Go to home</a>
+<a href="/?utf8=✓&search_field=all_fields&q=" id="btn_back" class="btn large primary" >Go to collection</a>
 <h3><%= @image.title[0] %></h3>
 <dl>
   <dt>Title</dt>
@@ -41,8 +43,12 @@ var img = '<%= image_tag("/imagerender/#{@image.id}/showimage", :alt => "Image")
     <%= image_tag("/imagerender/#{@image.id}/showtn", :id=> "img_tni1", :rel => "popover", :alt => "Thumbnail") %>
   </dd>
 </dl>
-<a href="#" id="btn_imgToggler" class="btn large primary" onclick="$('#div_limg_container').toggle();">Show/Hide Full Image<a>
-<a href="javascript:window.history.back();" id="btn_back" class="btn large primary" >Back to results<a>
+<a href="#" id="btn_imgToggler" class="btn large primary" onclick="$('#div_limg_container').toggle(); $('html, body').animate({ scrollTop: $('#div_limg_container').offset().top }, 'slow'); return false;">Show/Hide Full Image</a>
+<%= link_to 'Edit Metadata', "/image/#{@image.id}/edit", :id => "btn_edit", :class => "btn large primary" %>
+<br/>
+<br/>
 <div id="div_limg_container" class="limage-container" >
    <%= image_tag("/imagerender/#{@image.id}/showimage", :alt => "Image") %>
 </div>
+<br/>
+<hr/>

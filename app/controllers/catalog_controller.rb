@@ -14,7 +14,7 @@ class CatalogController < ApplicationController
   
   configure_blacklight do |config|
     config.default_solr_params = { 
-      :qf => 'title_tesim author_tesim',
+      :qf => 'title_tesim',
       :qt => 'search',
       :rows => 10 
     }
@@ -47,8 +47,8 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
-    config.add_facet_field solr_name('title', :stored_searchable, type: :text), :label => 'Title:' 
-    config.add_facet_field solr_name('description', :stored_searchable, type: :text), :label => 'Description:' 
+    config.add_facet_field solr_name('title', :stored_searchable, type: :string), :label => 'Title:', :limit => 10 
+    config.add_facet_field solr_name('description', :stored_searchable, type: :string), :label => 'Description:', :limit => 10 
     config.add_facet_field solr_name('subject', :stored_searchable, type: :string), :label => 'Subject:' 
     config.add_facet_field solr_name('author', :facetable), :label => 'Author' 
 #    config.add_facet_field solr_name('journer_title_info_mail_title_facet', :facetable), :label => 'Format' 
@@ -71,8 +71,8 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display 
-    config.add_index_field solr_name('title', :stored_searchable, type: :text), :label => 'Title:' 
-    config.add_index_field solr_name('title_vern', :stored_searchable, type: :text), :label => 'Title:' 
+    config.add_index_field solr_name('title', :stored_searchable, type: :string), :label => 'Title:' 
+    config.add_index_field solr_name('title_vern', :stored_searchable, type: :string), :label => 'Title:' 
     config.add_index_field solr_name('author', :stored_searchable, type: :string), :label => 'Author:' 
     config.add_index_field solr_name('author_vern', :stored_searchable, type: :string), :label => 'Author:' 
     config.add_index_field solr_name('format', :symbol), :label => 'Format:' 
@@ -84,7 +84,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display 
     config.add_show_field solr_name('pid', :stored_searchable, type: :string), :label => 'PID:' 
-    config.add_show_field solr_name('title', :stored_searchable, type: :text), :label => 'Title:' 
+    config.add_show_field solr_name('title', :stored_searchable, type: :string), :label => 'Title:' 
     config.add_show_field solr_name('title_vern', :stored_searchable, type: :string), :label => 'Title:' 
     config.add_show_field solr_name('subtitle', :stored_searchable, type: :string), :label => 'Subtitle:' 
     config.add_show_field solr_name('subtitle_vern', :stored_searchable, type: :string), :label => 'Subtitle:' 
@@ -128,6 +128,7 @@ class CatalogController < ApplicationController
     
     config.add_search_field 'title', :label => 'Title'
     config.add_search_field 'description', :label => 'Description'
+    config.add_search_field 'subject', :label => 'Subject'
 #    config.add_search_field('title') do |field|
 #      # solr_parameters hash are sent to Solr as ordinary url query params. 
 #      field.solr_parameters = { :'spellcheck.dictionary' => 'title' }
@@ -142,25 +143,25 @@ class CatalogController < ApplicationController
 #      }
 #    end
     
-    config.add_search_field('author') do |field|
-      field.solr_parameters = { :'spellcheck.dictionary' => 'author' }
-      field.solr_local_parameters = { 
-        :qf => '$author_qf',
-        :pf => '$author_pf'
-      }
-    end
+#    config.add_search_field('author') do |field|
+#      field.solr_parameters = { :'spellcheck.dictionary' => 'author' }
+#      field.solr_local_parameters = { 
+#        :qf => '$author_qf',
+#        :pf => '$author_pf'
+#      }
+#    end
     
     # Specifying a :qt only to show it's possible, and so our internal automated
     # tests can test it. In this case it's the same as 
     # config[:default_solr_parameters][:qt], so isn't actually neccesary. 
-    config.add_search_field('subject') do |field|
-      field.solr_parameters = { :'spellcheck.dictionary' => 'subject' }
-      field.qt = 'search'
-      field.solr_local_parameters = { 
-        :qf => '$subject_qf',
-        :pf => '$subject_pf'
-      }
-    end
+#    config.add_search_field('subject') do |field|
+#      field.solr_parameters = { :'spellcheck.dictionary' => 'subject' }
+#      field.qt = 'search'
+#      field.solr_local_parameters = { 
+#        :qf => '$subject_qf',
+#        :pf => '$subject_pf'
+#      }
+#    end
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and

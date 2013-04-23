@@ -372,7 +372,8 @@
       <analyzer>
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
-        <filter class="solr.TrimFilterFactory"   words="/apps/git/hydra-demo/jetty/solr/development-core/conf/stopwords_en.txt" enablePositionIncrements="true" />
+        <filter class="solr.TrimFilterFactory" />
+        <filter class="solr.StopFilterFactory"  words="stopwords_en.txt" enablePositionIncrements="true" />
       </analyzer>
     </fieldType>
     
@@ -381,6 +382,7 @@
       <analyzer>
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
         <filter class="solr.TrimFilterFactory" />
+        <filter class="solr.StopFilterFactory"  words="stopwords_en.txt" enablePositionIncrements="true" />
       </analyzer>
     </fieldType>
         
@@ -405,6 +407,7 @@
         <filter class="solr.PorterStemFilterFactory"/>
         -->
         <filter class="solr.TrimFilterFactory"/>
+        <filter class="solr.StopFilterFactory"  words="stopwords_en.txt" enablePositionIncrements="true" />
       </analyzer>
     </fieldType>
         
